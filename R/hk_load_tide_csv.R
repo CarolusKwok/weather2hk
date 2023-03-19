@@ -16,9 +16,7 @@ hk_load_tide_csv = function(time = weather2::tool_datetime(end = Sys.time(), by 
                             lan = "en", type = c("hko", "md"),
                             list_fail = T, dir = getwd(), attempt = 5, worker = 1){
   #Check
-  if(!weather2::w2_check_internet(silent = T)){return(invisible())}
-  if(weather2::w2_check_lan(value = lan, value_name = "lan")){return(invisible())}
-  if(weather2::w2_check_int(value = as.integer(attempt), value_name = "attempt")){return(invisible())}
+
   #Additional variables
   nlan = ifelse(lan == "en", "en",
                 ifelse(lan == "tc", "tc",
@@ -70,6 +68,6 @@ hk_load_tide_csv = function(time = weather2::tool_datetime(end = Sys.time(), by 
 
   title = paste0("Tidal Height_(",
                  stringr::str_flatten(type, collapse = ","), ")")
-  weather2::w2_load_file(data = URL, attempt = attempt, title = title,
-                         list_fail = list_fail, worker = worker, check = F)
+  weather2::sys.load_file(data = URL, attempt = attempt, title = title,
+                          list_fail = list_fail, worker = worker, check = F)
 }

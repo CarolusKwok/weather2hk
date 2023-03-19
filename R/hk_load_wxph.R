@@ -14,8 +14,6 @@
 hk_load_wxph = function(time = weather2::tool_datetime(end = Sys.time(), by = "10 min", duration = "3 day"),
                         station = "all", list_fail = T, dir = getwd(), attempt = 5, worker = 1){
   #Check
-  if(!weather2::w2_check_internet(silent = T)){return(invisible())}
-  if(weather2::w2_check_int(value = as.integer(attempt), value_name = "attempt")){return(invisible())}
 
   #Force time to be HKT
   time = lubridate::with_tz(time, tzone = "HongKong")
@@ -57,6 +55,6 @@ hk_load_wxph = function(time = weather2::tool_datetime(end = Sys.time(), by = "1
     dplyr::distinct()
 
   title = paste0("Weather Photo_", stringr::str_flatten(station, ","), " (HKO)")
-  weather2::w2_load_file(data = URL, attempt = attempt, title = title,
-                         list_fail = list_fail, worker = worker, check = F)
+  weather2::sys.load_file(data = URL, attempt = attempt, title = title,
+                          list_fail = list_fail, worker = worker, check = F)
 }

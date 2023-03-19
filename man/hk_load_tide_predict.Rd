@@ -4,7 +4,7 @@
 \alias{hk_load_tide_predict}
 \title{HK weather - Download predicted tidal height data from https://www.hko.gov.hk/en/tide/ttext.htm}
 \usage{
-hk_load_tide_predict(station, year)
+hk_load_tide_predict(station, year = 2015L:2025L)
 }
 \arguments{
 \item{station}{Station to download. Check the hk_dict_tide for more information}
@@ -18,5 +18,5 @@ hk_load_tide_predict(station, year)
 HK weather - Download predicted tidal height data from https://www.hko.gov.hk/en/tide/ttext.htm
 }
 \examples{
-hk_load_tide_predict("CLK", c(2016, 2021))
+hk_load_tide_predict("CLK", c(2016L, 2021L))
 }

@@ -44,6 +44,6 @@ hk_load_wcht = function(time = weather2::tool_datetime(end = Sys.time(), by = "1
                                "/", "HK_WCHT", "_", LDate, "_", LHour, ".gif")) %>%
     dplyr::distinct() %>%
     dplyr::select(Info, URL, DIR)
-  weather2::w2_load_file(data = URL, title = "Weather Chart (HKO)",
-                         attempt = attempt, worker = worker, list_fail = list_fail, threshold = threshold, check = F)
+  weather2::sys.load_file(data = URL, title = "Weather Chart (HKO)",
+                          attempt = attempt, worker = worker, list_fail = list_fail, threshold = threshold, check = F)
 }

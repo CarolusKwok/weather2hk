@@ -15,7 +15,6 @@
 hk_load_ltng = function(time = weather2::tool_datetime(end = Sys.time(), by = "6 min", duration = "96 hour"),
                         type = c("cc", "cg"), range = c(64, 256), list_fail = T, dir = getwd(), attempt = 5, worker = 1){
   #Check
-  if(!weather2::w2_check_internet(silent = T)){return(invisible())}
   if(sum(type == "cc" | type == "cg") != length(type)){
     cli::cli_text('Error: {.var type} can only be "cc", "cg" or both.')
     cli::cli_bullets(c("x" = 'You supplied {.var {type}}.'))
@@ -26,7 +25,7 @@ hk_load_ltng = function(time = weather2::tool_datetime(end = Sys.time(), by = "6
     cli::cli_bullets(c("x" = 'You supplied {.var {type}}.'))
     return(invisible())
   }
-  if(weather2::w2_check_int(value = as.integer(attempt), value_name = "attempt")){return(invisible())}
+
 
   #Find all combinations of type and range
   URL = tidyr::crossing(type = type, range = range, time = time) %>%
@@ -64,6 +63,6 @@ hk_load_ltng = function(time = weather2::tool_datetime(end = Sys.time(), by = "6
                  stringr::str_flatten(sprintf("%03d", range)), " ",
                  stringr::str_flatten(type),
                  "(HKO)")
-  weather2::w2_load_file(data = URL, attempt = attempt,
-                         title = title, list_fail = list_fail, worker = worker, check = F)
+  weather2::sys.load_file(data = URL, attempt = attempt,
+                          title = title, list_fail = list_fail, worker = worker, check = F)
 }

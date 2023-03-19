@@ -6,8 +6,8 @@
 #' @return
 #' @export
 #'
-#' @examples hk_load_tide_predict("CLK", c(2016, 2021))
-hk_load_tide_predict = function(station, year){
+#' @examples hk_load_tide_predict("CLK", c(2016L, 2021L))
+hk_load_tide_predict = function(station, year = 2015L:2025L){
   #Preset function ####
   lhtide_method1 = function(URL, station, year){
     Lines1 = readLines(URL)%>%
@@ -102,11 +102,8 @@ hk_load_tide_predict = function(station, year){
 
   #Check ####
   list_station = weather2::hk_dict_tide()$name
-  for(i in station){
-    if(weather2::w2_check_list_item(i, "station", list_station)){return(invisible())}
-  }
-  if(weather2::w2_check_type_integer(year, value_name = "year")){return(invisible())}
-
+  if(weather2::sys.ck.list_item.in(station, list_name = "station", list_station)){return(invisible())}
+  if(weather2::sys.ck.class_integer(year, value_name = "year")){return(invisible())}
 
   #Start Running ####
   data = tidyr::crossing(station, year) %>%

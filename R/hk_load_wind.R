@@ -13,14 +13,11 @@
 #' @examples hk_load_wind()
 hk_load_wind = function(lan = "en", type = c("wind", "gust"), list_fail = T, dir = getwd(), attempt = 5, worker = 1){
   #Check
-  if(!weather2::w2_check_internet(silent = T)){return(invisible())}
-  if(weather2::w2_check_lan(lan, "lan")){return(invisible())}
   if(sum(type == "wind" | type == "gust") != length(type)){
     cli::cli_text('Error: {.var type} can only be "wind", "gust", or any combination.')
     cli::cli_bullets(c("x" = 'You supplied {.var {type}}.'))
     return(invisible())
   }
-  if(weather2::w2_check_int(value = as.integer(attempt), value_name = "attempt")){return(invisible())}
 
   #Additional variables
   comb = unique(type)
@@ -81,7 +78,7 @@ hk_load_wind = function(lan = "en", type = c("wind", "gust"), list_fail = T, dir
 
     #Start to download
     #return(URL)
-    weather2::w2_load_file(data = URL, attempt = attempt, title = paste0("Wind distribution_", type, " (HKO)"),
-                           list_fail = list_fail, worker = worker, check = F)
+    weather2::sys.load_file(data = URL, attempt = attempt, title = paste0("Wind distribution_", type, " (HKO)"),
+                            list_fail = list_fail, worker = worker, check = F)
   }
 }

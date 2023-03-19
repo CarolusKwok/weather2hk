@@ -15,7 +15,6 @@
 mo_load_tide = function(time = weather2::tool_datetime(end = Sys.time(), duration = "91 hour", by = "1 min") %>% weather2::tool_datetime_select(by = "min", value = 0),
                         dir = getwd(), attempt = 900, subattempt = 5, worker = 1, list_fail = T, threshold = 0.4){
   #Check
-  if(!weather2::w2_check_internet(silent = T)){return(invisible())}
 
   #Additional variables
   dit = 15
@@ -59,11 +58,11 @@ mo_load_tide = function(time = weather2::tool_datetime(end = Sys.time(), duratio
     dplyr::select(Set, URL, DIR, Info)
 
   #Start
-  weather2::w2_load_fileset(data = URL,
-                            title = "MO Tidal Height",
-                            attempt = subattempt,
-                            list_fail = list_fail,
-                            worker = worker,
-                            threshold = threshold,
-                            check = F)
+  weather2::sys.load_fileset(data = URL,
+                             title = "MO Tidal Height",
+                             attempt = subattempt,
+                             list_fail = list_fail,
+                             worker = worker,
+                             threshold = threshold,
+                             check = F)
 }
