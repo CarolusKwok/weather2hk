@@ -8,8 +8,8 @@ hk_load_wcht(
   time = weather2::tool_datetime(end = Sys.time(), by = "1 hour", duration = "7 day"),
   list_fail = T,
   dir = getwd(),
-  attempt = 5,
-  worker = 1,
+  attempt = 5L,
+  worker = 1L,
   threshold = 0.6
 )
 }

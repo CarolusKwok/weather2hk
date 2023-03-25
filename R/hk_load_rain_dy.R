@@ -10,8 +10,11 @@
 #' @export
 #'
 #' @examples hk_load_rain_dy()
-hk_load_rain_dy = function(lan = "en", list_fail = T, dir = getwd(), attempt = 5, worker = 1){
+hk_load_rain_dy = function(lan = "en", list_fail = T, dir = getwd(), attempt = 5L, worker = 1L){
   #Check
+  if(weather2hk::sys_ckf_HKLoad(time = ISOdatetime(2023, 01, 01, 00, 00, 00, tz = "HongKong"),
+                                list_fail = list_fail, attempt = attempt, worker = worker)){return(invisible())}
+  if(weather2hk::sys_ckf_HKLoadLan(lan)){return(invisible())}
 
   #Additional variables
   nlan = ifelse(lan == "en", "e",
@@ -51,6 +54,6 @@ hk_load_rain_dy = function(lan = "en", list_fail = T, dir = getwd(), attempt = 5
       dplyr::select(Info, URL, DIR) %>%
       dplyr::distinct()
     #Start to download
-    weather2::sys.load_file(data = URL, attempt = attempt, title = "Daily Rainfall Image (HKO)",
+    weather2::sys_load_file(data = URL, attempt = attempt, title = "Daily Rainfall Image (HKO)",
                             list_fail = list_fail, worker = worker, check = F)
 }

@@ -12,8 +12,10 @@
 #'
 #' @examples hk_load_rain_hr()
 hk_load_rain_hr = function(time = weather2::tool_datetime(end = Sys.time(), by = "15 min", duration = "7 day"),
-                           lan = "en", list_fail = T, dir = getwd(), attempt = 5, worker = 1){
+                           lan = "en", list_fail = T, dir = getwd(), attempt = 5L, worker = 1L){
   #Check
+  if(weather2hk::sys_ckf_HKLoad(time = time, list_fail = list_fail, attempt = attempt, worker = worker)){return(invisible())}
+  if(weather2hk::sys_ckf_HKLoadLan(lan)){return(invisible())}
 
   #Additional variables
   dit = 15
@@ -51,6 +53,6 @@ hk_load_rain_hr = function(time = weather2::tool_datetime(end = Sys.time(), by =
     dplyr::select(Info, URL, DIR) %>%
     dplyr::distinct()
     #Start to download
-    weather2::sys.load_file(data = URL, attempt = attempt, title = paste0("Hourly Rain distribution_", lan, " (HKO)"),
+    weather2::sys_load_file(data = URL, attempt = attempt, title = paste0("Hourly Rain distribution_", lan, " (HKO)"),
                             list_fail = list_fail, worker = worker, check = F)
 }

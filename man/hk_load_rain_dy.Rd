@@ -8,8 +8,8 @@ hk_load_rain_dy(
   lan = "en",
   list_fail = T,
   dir = getwd(),
-  attempt = 5,
-  worker = 1
+  attempt = 5L,
+  worker = 1L
 )
 }
 \arguments{

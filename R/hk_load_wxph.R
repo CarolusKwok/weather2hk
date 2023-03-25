@@ -12,8 +12,10 @@
 #'
 #' @examples hk_load_wxph()
 hk_load_wxph = function(time = weather2::tool_datetime(end = Sys.time(), by = "10 min", duration = "3 day"),
-                        station = "all", list_fail = T, dir = getwd(), attempt = 5, worker = 1){
+                        station = "all", list_fail = T, dir = getwd(), attempt = 5L, worker = 1L){
   #Check
+  if(weather2hk::sys_ckf_HKLoad(time, list_fail = list_fail, attempt = attempt, worker = worker)){return(invisible())}
+
 
   #Force time to be HKT
   time = lubridate::with_tz(time, tzone = "HongKong")
@@ -55,6 +57,6 @@ hk_load_wxph = function(time = weather2::tool_datetime(end = Sys.time(), by = "1
     dplyr::distinct()
 
   title = paste0("Weather Photo_", stringr::str_flatten(station, ","), " (HKO)")
-  weather2::sys.load_file(data = URL, attempt = attempt, title = title,
+  weather2::sys_load_file(data = URL, attempt = attempt, title = title,
                           list_fail = list_fail, worker = worker, check = F)
 }

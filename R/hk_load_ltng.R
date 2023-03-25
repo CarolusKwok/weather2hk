@@ -13,19 +13,11 @@
 #'
 #' @examples hk_load_ltng()
 hk_load_ltng = function(time = weather2::tool_datetime(end = Sys.time(), by = "6 min", duration = "96 hour"),
-                        type = c("cc", "cg"), range = c(64, 256), list_fail = T, dir = getwd(), attempt = 5, worker = 1){
+                        type = c("cc", "cg"), range = c(64, 256), list_fail = T, dir = getwd(), attempt = 5L, worker = 1L){
   #Check
-  if(sum(type == "cc" | type == "cg") != length(type)){
-    cli::cli_text('Error: {.var type} can only be "cc", "cg" or both.')
-    cli::cli_bullets(c("x" = 'You supplied {.var {type}}.'))
-    return(invisible())
-  }
-  if(sum(range == 64 | range == 256) != length(range)){
-    cli::cli_text('Error: {.var range} can only be "64", "256" or both.')
-    cli::cli_bullets(c("x" = 'You supplied {.var {type}}.'))
-    return(invisible())
-  }
-
+  if(weather2hk::sys_ckf_HKLoad(time = time, list_fail = list_fail, attempt = attempt, worker = worker)){return(invisible())}
+  if(weather2::sys_ckl_ItemIn(list = type, list_name = "type", expected = c("cc", "cg"))){return(invisible())}
+  if(weather2::sys_ckl_ItemIn(list = range, list_name = "range", expected = c(64, 256))){return(invisible())}
 
   #Find all combinations of type and range
   URL = tidyr::crossing(type = type, range = range, time = time) %>%
@@ -63,6 +55,7 @@ hk_load_ltng = function(time = weather2::tool_datetime(end = Sys.time(), by = "6
                  stringr::str_flatten(sprintf("%03d", range)), " ",
                  stringr::str_flatten(type),
                  "(HKO)")
-  weather2::sys.load_file(data = URL, attempt = attempt,
+
+  weather2::sys_load_file(data = URL, attempt = attempt,
                           title = title, list_fail = list_fail, worker = worker, check = F)
 }

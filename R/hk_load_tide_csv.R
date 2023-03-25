@@ -14,8 +14,11 @@
 #' @examples hk_load_tide_csv()
 hk_load_tide_csv = function(time = weather2::tool_datetime(end = Sys.time(), by = "5 min", duration = "7 day"),
                             lan = "en", type = c("hko", "md"),
-                            list_fail = T, dir = getwd(), attempt = 5, worker = 1){
+                            list_fail = T, dir = getwd(), attempt = 5L, worker = 1L){
   #Check
+  if(weather2hk::sys_ckf_HKLoad(time, list_fail = list_fail, attempt = attempt, worker = worker)){return(invisible())}
+  if(weather2hk::sys_ckf_HKLoadLan(lan)){return(invisible())}
+  if(weather2::sys_ckl_ItemIn(list = type, list_name = "type", expected = c("hko", "md"), mode = "in")){return(invisible())}
 
   #Additional variables
   nlan = ifelse(lan == "en", "en",
@@ -68,6 +71,6 @@ hk_load_tide_csv = function(time = weather2::tool_datetime(end = Sys.time(), by 
 
   title = paste0("Tidal Height_(",
                  stringr::str_flatten(type, collapse = ","), ")")
-  weather2::sys.load_file(data = URL, attempt = attempt, title = title,
+  weather2::sys_load_file(data = URL, attempt = attempt, title = title,
                           list_fail = list_fail, worker = worker, check = F)
 }

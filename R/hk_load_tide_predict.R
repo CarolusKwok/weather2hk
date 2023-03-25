@@ -8,6 +8,11 @@
 #'
 #' @examples hk_load_tide_predict("CLK", c(2016L, 2021L))
 hk_load_tide_predict = function(station, year = 2015L:2025L){
+  #Check ####
+  list_station = weather2::hk_dict_tide()$name
+  if(weather2::sys_ckl_ItemIn(station, list_name = "station", list_station)){return(invisible())}
+  if(weather2::sys_ckc_integer(year, value_name = "year")){return(invisible())}
+
   #Preset function ####
   lhtide_method1 = function(URL, station, year){
     Lines1 = readLines(URL)%>%
@@ -99,11 +104,6 @@ hk_load_tide_predict = function(station, year = 2015L:2025L){
       dplyr::distinct()
     return(Data1)
   }
-
-  #Check ####
-  list_station = weather2::hk_dict_tide()$name
-  if(weather2::sys.ck.list_item.in(station, list_name = "station", list_station)){return(invisible())}
-  if(weather2::sys.ck.class_integer(year, value_name = "year")){return(invisible())}
 
   #Start Running ####
   data = tidyr::crossing(station, year) %>%

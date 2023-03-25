@@ -10,8 +10,8 @@ hk_load_satl(
   type = c("tc", "ir", "dc"),
   list_fail = T,
   dir = getwd(),
-  attempt = 5,
-  worker = 1
+  attempt = 5L,
+  worker = 1L
 )
 }
 \arguments{

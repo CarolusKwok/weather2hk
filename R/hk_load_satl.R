@@ -13,18 +13,11 @@
 #'
 #' @examples hk_load_satl()
 hk_load_satl = function(time = weather2::tool_datetime(end = Sys.time(), by = "10 min", duration = "3 day"),
-                        magn = c(2, 4, 8), type = c("tc", "ir", "dc"), list_fail = T, dir = getwd(), attempt = 5, worker = 1){
+                        magn = c(2, 4, 8), type = c("tc", "ir", "dc"), list_fail = T, dir = getwd(), attempt = 5L, worker = 1L){
   #Check
-  if(sum(magn == 2 | magn == 4 | magn == 8) != length(magn)){
-    cli::cli_text('Error: {.var magn} can only be 2, 4, 8, or any combination.')
-    cli::cli_bullets(c("x" = 'You supplied {.var {magn}}.'))
-    return(invisible())
-  }
-  if(sum(type == "tc" | type == "ir" | type == "dc") != length(type)){
-    cli::cli_text('Error: {.var type} can only be "tc", "ir", "dc, or any combination.')
-    cli::cli_bullets(c("x" = 'You supplied {.var {type}}.'))
-    return(invisible())
-  }
+  if(weather2hk::sys_ckf_HKLoad(time, list_fail = list_fail, attempt = attempt, worker = worker)){return(invisible())}
+  if(weather2::sys_ckl_ItemIn(list = magn, list_name = "magn", expected = c(2,4,8), mode = "in")){return(invisible())}
+  if(weather2::sys_ckl_ItemIn(list = type, list_name = "type", expected = c("tc", "ir", "dc"), mode = "in")){return(invisible())}
 
   #Force time to be HKT
   time = lubridate::with_tz(time, tzone = "HongKong")
@@ -66,6 +59,6 @@ hk_load_satl = function(time = weather2::tool_datetime(end = Sys.time(), by = "1
     dplyr::select(Info, URL, DIR)
   #Start to download
   title = paste0("Satellite Image_", stringr::str_flatten(sprintf("%02d", magn)), " ", stringr::str_flatten(type), " (HKO)")
-  weather2::sys.load_file(data = URL, attempt = attempt, title = title,
+  weather2::sys_load_file(data = URL, attempt = attempt, title = title,
                           list_fail = list_fail, worker = worker, check = F)
 }

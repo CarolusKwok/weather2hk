@@ -12,8 +12,10 @@
 #'
 #' @examples hk_load_wcht()
 hk_load_wcht = function(time = weather2::tool_datetime(end = Sys.time(), by = "1 hour", duration = "7 day"),
-                        list_fail = T, dir = getwd(), attempt = 5, worker = 1, threshold = 0.6){
+                        list_fail = T, dir = getwd(), attempt = 5L, worker = 1L, threshold = 0.6){
   #Check
+  if(weather2hk::sys_ckf_HKLoad(time, list_fail = list_fail, attempt = attempt, worker = worker)){return(invisible())}
+
   #Additional variables
   dit = 6
   #Force time to be HKT
@@ -44,6 +46,6 @@ hk_load_wcht = function(time = weather2::tool_datetime(end = Sys.time(), by = "1
                                "/", "HK_WCHT", "_", LDate, "_", LHour, ".gif")) %>%
     dplyr::distinct() %>%
     dplyr::select(Info, URL, DIR)
-  weather2::sys.load_file(data = URL, title = "Weather Chart (HKO)",
+  weather2::sys_load_file(data = URL, title = "Weather Chart (HKO)",
                           attempt = attempt, worker = worker, list_fail = list_fail, threshold = threshold, check = F)
 }
