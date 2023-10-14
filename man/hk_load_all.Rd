@@ -9,9 +9,6 @@ hk_load_all(worker = 1)
 \arguments{
 \item{worker}{Numbers of sessions to be open}
 }
-\value{
-
-}
 \description{
 HK weather - Downloading all information from HKO and SMG
 }

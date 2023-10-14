@@ -6,9 +6,6 @@
 \usage{
 hk_dict_tide()
 }
-\value{
-
-}
 \description{
 Dictionary of HK tidal stations
 }

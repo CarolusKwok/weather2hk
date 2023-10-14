@@ -26,9 +26,6 @@ hk_load_wcht(
 
 \item{threshold}{Threshold of file size, when compared to the largest item to be installed in the list}
 }
-\value{
-
-}
 \description{
 HK weather - Downloading weather chart from https://www.hko.gov.hk/en/index.html
 }

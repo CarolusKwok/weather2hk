@@ -26,9 +26,6 @@ hk_load_mslp_csv(
 
 \item{worker}{Numbers of sessions to be open}
 }
-\value{
-
-}
 \description{
 HK weather - Downloading mean sea level pressure data from https://data.gov.hk/en/help/api-spec
 }

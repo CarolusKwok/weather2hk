@@ -9,9 +9,9 @@ sys_ckf_HKLoadLan(lan)
 \arguments{
 \item{lan}{lan within the function}
 }
-\value{
-
-}
 \description{
 Check if language is supported
+}
+\examples{
+sys_ckf_HKLoadLan(lan)
 }

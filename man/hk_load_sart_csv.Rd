@@ -26,9 +26,6 @@ hk_load_sart_csv(
 
 \item{worker}{Numbers of sessions to be open}
 }
-\value{
-
-}
 \description{
 HK weather - Downloading solar radiation information from https://data.gov.hk/en/help/api-spec
 }

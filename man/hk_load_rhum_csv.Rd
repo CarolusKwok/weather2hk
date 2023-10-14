@@ -26,9 +26,6 @@ hk_load_rhum_csv(
 
 \item{worker}{Numbers of sessions to be open}
 }
-\value{
-
-}
 \description{
 HK weather - Downloading relative humidity information from https://data.gov.hk/en/help/api-spec
 }

@@ -23,9 +23,6 @@ hk_load_rain_dy(
 
 \item{worker}{Numbers of sessions to be open}
 }
-\value{
-
-}
 \description{
 HK weather - Downloading daily rainfall distribution image from https://www.hko.gov.hk/en/index.html
 }

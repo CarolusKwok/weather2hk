@@ -15,9 +15,6 @@ sys_ckf_HKLoad(time, list_fail, attempt, worker)
 
 \item{worker}{worker within the function}
 }
-\value{
-
-}
 \description{
 Check if items within the HKLoad or MOLoad are valid
 }

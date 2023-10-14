@@ -7,14 +7,11 @@
 hk_load_tide_predict(station, year = 2015L:2025L, mode = c("hr", "hl"))
 }
 \arguments{
-\item{station}{Station to download. Check the hk_dict_tide for more information}
+\item{station}{Station to download. Check the \code{hk_dict_tide} for more information}
 
 \item{year}{Year to download}
 
 \item{mode}{}
-}
-\value{
-
 }
 \description{
 HK weather - Download predicted tidal height data from https://www.hko.gov.hk/en/tide/ttext.htm

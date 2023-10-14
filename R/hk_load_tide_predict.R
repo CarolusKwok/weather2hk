@@ -1,7 +1,7 @@
 #' HK weather - Download predicted tidal height data from https://www.hko.gov.hk/en/tide/ttext.htm
 #'
 #' @param year Year to download
-#' @param station Station to download. Check the hk_dict_tide for more information
+#' @param station Station to download. Check the `hk_dict_tide` for more information
 #' @param mode
 #'
 #' @return
@@ -49,18 +49,21 @@ hk_load_tide_predict = function(station, year = 2015L:2025L, mode = c("hr", "hl"
     }
   }
 
-  data_tide = dplyr::arrange(data_tide, station, time)
+  data_tide = dplyr::group_by(.data = data_tide, station, time) %>%
+    dplyr::summarise(tide = mean(tide, na.rm = T)) %>%
+    dplyr::ungroup() %>%
+    dplyr::arrange(station, time, tide)
   return(data_tide)
 }
 
 #' Download hourly predicted tidal height data, using the year 2020 method
 #'
-#' @param station
-#' @param year
+#' @param station Station to download. Check the `hk_dict_tide` for more information
+#' @param year Year to download
 #'
 #' @keywords internal
 #'
-#' @examples
+#' @examples N/A
 hk_load_tide_predict_hr2020 = function(station, year){
   URL = paste0("https://www.hko.gov.hk/tide/", station, "textPH", year, ".htm")
   data = readLines(URL) %>%
@@ -93,12 +96,12 @@ hk_load_tide_predict_hr2020 = function(station, year){
 
 #' Download high/ low predicted tidal height data, using the year 2020 method
 #'
-#' @param station
-#' @param year
+#' @param station Station to download. Check the `hk_dict_tide` for more information
+#' @param year Year to download
 #'
 #' @keywords internal
 #'
-#' @examples
+#' @examples N/A
 hk_load_tide_predict_hl2020 = function(station, year){
   URL = paste0("https://www.hko.gov.hk/tide/e", station, "text", year, ".html")
 
@@ -137,12 +140,12 @@ hk_load_tide_predict_hl2020 = function(station, year){
 
 #' Download hourly predicted tidal height data, using the year 2015 method
 #'
-#' @param station
-#' @param year
+#' @param station Station to download. Check the `hk_dict_tide` for more information
+#' @param year Year to download
 #'
 #' @keywords internal
 #'
-#' @examples
+#' @examples N/A
 hk_load_tide_predict_hr2015 = function(station, year){
   URL = paste0("https://www.hko.gov.hk/tide/", station, "textPH", year, ".htm")
   data = readLines(URL) %>%
@@ -170,12 +173,12 @@ hk_load_tide_predict_hr2015 = function(station, year){
 
 #' Download high/ low predicted tidal height data, using the year 2015 method
 #'
-#' @param station
-#' @param year
+#' @param station Station to download. Check the `hk_dict_tide` for more information
+#' @param year Year to download
 #'
 #' @keywords internal
 #'
-#' @examples
+#' @examples N/A
 hk_load_tide_predict_hl2015 = function(station, year){
   URL = paste0("https://www.hko.gov.hk/tide/e", station, "text", year, ".html")
   data1 = readLines(URL) %>%

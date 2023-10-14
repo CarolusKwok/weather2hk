@@ -27,7 +27,7 @@ sys_ckf_HKLoad = function(time, list_fail, attempt, worker){
 #' @return
 #' @export
 #'
-#' @examples
+#' @examples sys_ckf_HKLoadLan(lan)
 sys_ckf_HKLoadLan = function(lan){
   if(weather2::sys_ckl_length(list = lan, list_name = "lan", expected = 1L, mode = "==")){return(T)}
   if(weather2::sys_ckl_ItemIn(list = lan, list_name = "lan", expected = c("tc", "sc", "en"), mode = "in")){return(T)}

@@ -7,9 +7,14 @@
 hk_load_tide_predict_hl2020(station, year)
 }
 \arguments{
-\item{year}{}
+\item{station}{Station to download. Check the \code{hk_dict_tide} for more information}
+
+\item{year}{Year to download}
 }
 \description{
 Download high/ low predicted tidal height data, using the year 2020 method
+}
+\examples{
+N/A
 }
 \keyword{internal}

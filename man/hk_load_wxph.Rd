@@ -26,9 +26,6 @@ hk_load_wxph(
 
 \item{worker}{Numbers of sessions to be open}
 }
-\value{
-
-}
 \description{
 HK weather - Downloading weather photo from https://www.hko.gov.hk/en/index.html
 }

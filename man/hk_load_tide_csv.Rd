@@ -29,9 +29,6 @@ hk_load_tide_csv(
 
 \item{worker}{Numbers of sessions to be open}
 }
-\value{
-
-}
 \description{
 HK weather - Downloading tidal height data from https://data.gov.hk/en/help/api-spec
 }

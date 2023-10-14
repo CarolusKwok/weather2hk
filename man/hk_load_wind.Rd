@@ -26,9 +26,6 @@ hk_load_wind(
 
 \item{worker}{Numbers of sessions to be open}
 }
-\value{
-
-}
 \description{
 HK weather - Downloading wind distribution images from https://www.hko.gov.hk/en/index.html
 }

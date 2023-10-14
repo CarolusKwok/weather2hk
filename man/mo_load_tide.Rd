@@ -30,9 +30,6 @@ mo_load_tide(
 
 \item{threshold}{Threshold of file size, when compared to the largest item to be installed in the list}
 }
-\value{
-
-}
 \description{
 MO weather - Download tidal images from https://www.smg.gov.mo/zh
 }

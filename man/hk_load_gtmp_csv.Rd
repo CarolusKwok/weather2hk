@@ -26,9 +26,6 @@ hk_load_gtmp_csv(
 
 \item{worker}{Numbers of sessions to be open}
 }
-\value{
-
-}
 \description{
 HK weather - Downloading grass temperature data from https://data.gov.hk/en/help/api-spec
 }

@@ -29,9 +29,6 @@ hk_load_ltng(
 
 \item{worker}{Numbers of sessions to be open}
 }
-\value{
-
-}
 \description{
 HK weather - Downloading lighting & radar images from https://www.hko.gov.hk/en/index.html
 }

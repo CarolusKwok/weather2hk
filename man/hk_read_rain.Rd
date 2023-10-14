@@ -9,9 +9,6 @@ hk_read_rain(file_list)
 \arguments{
 \item{file_list}{a list of csv file directories}
 }
-\value{
-
-}
 \description{
 HK weather - Read the RAIN files
 }

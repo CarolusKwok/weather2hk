@@ -7,9 +7,14 @@
 hk_load_tide_predict_hr2015(station, year)
 }
 \arguments{
-\item{year}{}
+\item{station}{Station to download. Check the \code{hk_dict_tide} for more information}
+
+\item{year}{Year to download}
 }
 \description{
 Download hourly predicted tidal height data, using the year 2015 method
+}
+\examples{
+N/A
 }
 \keyword{internal}

@@ -26,9 +26,6 @@ hk_load_rain_csv(
 
 \item{worker}{Numbers of sessions to be open}
 }
-\value{
-
-}
 \description{
 HK weather - Downloading rainfall nowcast information from https://data.gov.hk/en/help/api-spec
 }
